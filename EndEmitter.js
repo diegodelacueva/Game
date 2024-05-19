@@ -1,0 +1,3 @@
+function EndEmitter(game,x,y,frequency){this.game=game;var emitter=this.game.add.emitter(this.game.world.centerX+x*assetScale,this.game.world.centerY+y*assetScale,200);emitter.makeParticles('assets',["leaf0","leaf1","leaf2"]);emitter.minParticleSpeed.setTo(-150,-150);emitter.maxParticleSpeed.setTo(150,150);emitter.setScale(0.7,0.2,0.7,0.2,2500);emitter.setSize(800*assetScale,600*assetScale);emitter.setAlpha(0,0.7,2500);emitter.gravity=150;emitter.flow(5000,frequency,200,-1);soundManager.playAudio(sfxAtlas,'effectParticles');this.game.time.events.loop(5000+frequency,this.PlaySFX,this);}
+EndEmitter.prototype.PlaySFX=function()
+{soundManager.playAudio(sfxAtlas,'effectParticles');};

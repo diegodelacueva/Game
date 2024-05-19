@@ -1,0 +1,7 @@
+function Intro(game,gameplay)
+{this.game=game;this.gameplay=gameplay;this.bubbles=new Bubbles(this.game,this,0,0);this.game.add.tween(this.gameplay.fish).from({y:900*assetScale},1000,"Linear",true);this.game.add.tween(this.gameplay.fish.scale).from({x:0.1,y:0.1},1000,Phaser.Easing.Linear.None,true);this.game.time.events.add(Phaser.Timer.SECOND*0.6,function()
+{soundManager.addOnStopCallback(sfxAtlas,this.Bubbling,this);soundManager.playAudio(sfxAtlas,'motionWater');},this);}
+Intro.prototype.Bubbling=function()
+{soundManager.removeOnStopCallback(sfxAtlas,this.Bubbling,this);this.bubbles.IntroParticleEffect();soundManager.addOnStopCallback(sfxAtlas,this.LaughLulu,this);soundManager.playAudio(sfxAtlas,'bubbling');};Intro.prototype.LaughLulu=function()
+{soundManager.removeOnStopCallback(sfxAtlas,this.LaughLulu,this);soundManager.addOnStopCallback(sfxAtlas,this.StartPrompt,this);soundManager.playAudio(sfxAtlas,'lulu');this.game.add.tween(this.gameplay.lulubody).to({y:this.gameplay.lulubody.y+10*assetScale},400,"Linear",true,0,0,true);this.game.add.tween(this.gameplay.lulubody).to({angle:3},100,"Linear",true,0,2,true);};Intro.prototype.StartPrompt=function()
+{soundManager.removeOnStopCallback(sfxAtlas,this.StartPrompt,this);this.gameplay.IntroCallback();};
